@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, TrendingUp, Filter } from 'lucide-react';
+import { ArrowRight, TrendingUp } from 'lucide-react';
 import { articles } from '@/lib/data/articles';
+import { getArticleSubcategory } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function ArticlesPage() {
   return (
     <div className="min-h-screen py-16 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <h1 className="text-5xl font-bold text-white mb-4">
             All Articles
@@ -28,22 +29,29 @@ export default function ArticlesPage() {
               key={article.id}
               className="group bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500 transition-all"
             >
-              <div className="relative h-48">
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    {article.sport}
-                  </span>
-                  <span className="bg-slate-900/80 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    {article.category}
-                  </span>
-                </div>
-              </div>
+              {(() => {
+                const subcategory = getArticleSubcategory(article.categories);
+                return (
+                  <div className="relative h-48">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4 flex gap-2">
+                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                        {article.sport}
+                      </span>
+                      {subcategory && (
+                        <span className="bg-slate-900/80 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                          {subcategory}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
               <div className="p-6">
                 <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
                   <TrendingUp className="h-4 w-4" />

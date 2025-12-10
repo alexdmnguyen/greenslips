@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, TrendingUp } from 'lucide-react';
 import { articles } from '@/lib/data/articles';
 import { sports } from '@/lib/data/sports';
+import { getArticleSubcategory } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 interface EsportPageProps {
@@ -42,12 +43,14 @@ export default function EsportPage({ params }: EsportPageProps) {
     notFound();
   }
 
-  const sportArticles = articles.filter((a) => a.sport === sport.name);
+  const sportArticles = articles.filter(
+    (a) => a.categories?.includes(sport.slug)
+  );
 
   return (
     <div className="min-h-screen">
       <section className="relative py-20 px-4 bg-gradient-to-b from-slate-900 to-slate-800">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-center mb-6">
             <span className="text-6xl">{sport.icon}</span>
           </div>
@@ -61,7 +64,7 @@ export default function EsportPage({ params }: EsportPageProps) {
       </section>
 
       <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">
               Latest {sport.name} Articles
@@ -85,11 +88,21 @@ export default function EsportPage({ params }: EsportPageProps) {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                        {article.sport}
-                      </span>
-                    </div>
+                    {(() => {
+                      const subcategory = getArticleSubcategory(article.categories);
+                      return (
+                        <div className="absolute top-4 left-4 flex gap-2">
+                          <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            {article.sport}
+                          </span>
+                          {subcategory && (
+                            <span className="bg-slate-900/80 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                              {subcategory}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })()}
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">

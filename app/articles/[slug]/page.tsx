@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { articles } from '@/lib/data/articles';
+import { sports } from '@/lib/data/sports';
+import { getArticleSubcategoryInfo } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 interface ArticlePageProps {
@@ -43,6 +45,15 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     .filter((a) => a.sport === article.sport && a.id !== article.id)
     .slice(0, 3);
 
+  const sportSlug =
+    sports.find(
+      (s) =>
+        s.name.toLowerCase() === article.sport.toLowerCase() ||
+        s.slug === article.categories.find((c) => c === s.slug)
+    )?.slug;
+  const subcategory = getArticleSubcategoryInfo(article.categories);
+  const sportBasePath = sportSlug ? `/${article.category}/${sportSlug}` : null;
+
   return (
     <div className="min-h-screen py-16 px-4">
       <div className="max-w-4xl mx-auto">
@@ -57,12 +68,26 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         <article>
           <div className="mb-8">
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                {article.sport}
-              </span>
-              <span className="bg-slate-700 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                {article.category}
-              </span>
+              {sportBasePath ? (
+                <Link
+                  href={sportBasePath}
+                  className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-blue-500 transition-colors"
+                >
+                  {article.sport}
+                </Link>
+              ) : (
+                <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  {article.sport}
+                </span>
+              )}
+              {subcategory && sportBasePath && (
+                <Link
+                  href={`${sportBasePath}/${subcategory.slugSuffix}`}
+                  className="bg-slate-700 text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-slate-600 transition-colors"
+                >
+                  {subcategory.label}
+                </Link>
+              )}
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">

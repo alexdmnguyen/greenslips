@@ -57,35 +57,32 @@ export default function EsportsPage() {
               <Link
                 key={sport.id}
                 href={`/esports/${sport.slug}`}
-                className="group relative overflow-hidden rounded-2xl border border-slate-700/70 ring-1 ring-slate-600/60 bg-gradient-to-br from-slate-800 via-slate-800/70 to-slate-900 hover:border-indigo-500 hover:ring-indigo-500/60 transition-all duration-700 shadow-2xl shadow-indigo-900/40"
+                className="group relative overflow-hidden rounded-2xl border border-slate-700/70 ring-1 ring-slate-600/60 bg-gradient-to-br from-slate-800 via-slate-800/70 to-slate-900 hover:border-indigo-500 hover:ring-indigo-500/60 transition-all duration-800 shadow-none hover:shadow-2xl hover:shadow-indigo-900/40"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
                   <Image
                     src={sport.image}
                     alt={sport.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-115"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/45 to-black/10" />
-                  <div className="absolute inset-0 translate-x-[-140%] bg-gradient-to-r from-transparent via-white/35 to-white/10 opacity-0 transition-all duration-600 group-hover:translate-x-0 group-hover:opacity-100" />
                 </div>
-                <div className="relative p-6 space-y-3">
+                <div className="relative p-6 space-y-3 flex-1">
                   <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-indigo-900/25 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-center gap-3 text-center">
                     <div className="text-3xl">{sport.icon}</div>
-                    <span className="rounded-full border border-indigo-500/40 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-200">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-indigo-200 transition-colors drop-shadow-[0_2px_12px_rgba(99,102,241,0.45)]">
                       {sport.name}
-                    </span>
+                    </h3>
                   </div>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-indigo-200 transition-colors drop-shadow-[0_2px_12px_rgba(99,102,241,0.45)]">
-                    {sport.name}
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed transition-colors duration-500 group-hover:text-gray-100">
+                  <p className="text-gray-300 text-sm leading-relaxed transition-colors duration-500 group-hover:text-gray-100 line-clamp-1">
                     {sport.description}
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-indigo-100">
-                    <span className="h-2 w-2 rounded-full bg-indigo-400 animate-pulse drop-shadow" />
-                    Enter the hub
+                  <div className="flex justify-end text-sm text-indigo-100 mt-3">
+                    <span className="inline-flex items-center gap-1">
+                      Explore <ArrowRight className="h-4 w-4" />
+                    </span>
                   </div>
                 </div>
               </Link>
