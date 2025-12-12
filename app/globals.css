@@ -55,92 +55,54 @@
     @apply bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent;
   }
 
-  @keyframes float-emoji {
+  @keyframes emoji-float {
     0% {
-      opacity: 0;
-      transform: translate3d(var(--float-start-x, 0px), 120%, 0)
-        scale(var(--float-scale, 1))
-        rotate(var(--float-rotate, 0deg));
-    }
-    12% {
-      opacity: 0.8;
-    }
-    45% {
-      opacity: 1;
-      transform: translate3d(
-          calc(var(--float-start-x, 0px) * 0.35),
-          25%,
-          0
-        )
-        scale(calc(var(--float-scale, 1) * 1.04))
-        rotate(var(--float-rotate, 0deg));
-    }
-    82% {
-      opacity: 0;
+      transform: translate3d(0, 440%, 0);
     }
     100% {
-      opacity: 0;
-      transform: translate3d(var(--float-end-x, 0px), -115%, 0)
-        scale(var(--float-scale, 1))
-        rotate(calc(var(--float-rotate, 0deg) * 0.9));
+      transform: translate3d(0, -330%, 0);
     }
   }
 
-  .emoji-stream {
+  .emoji-cloud {
     @apply pointer-events-none absolute inset-0 overflow-hidden;
-    mix-blend-mode: screen;
-    isolation: isolate;
-    filter: saturate(1.08) brightness(1.05);
-  }
-
-  .emoji-stream::before,
-  .emoji-stream::after {
-    content: "";
-    position: absolute;
-    inset: -14% 16%;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .emoji-stream::before {
-    background: radial-gradient(
-      ellipse at 50% 20%,
-      rgba(59, 130, 246, 0.2),
-      transparent 55%
-    );
-    filter: blur(40px);
-    opacity: 0.8;
-  }
-
-  .emoji-stream::after {
-    background: linear-gradient(
-      120deg,
-      rgba(226, 232, 240, 0.1),
-      rgba(99, 102, 241, 0.18),
-      rgba(37, 99, 235, 0.08)
-    );
-    opacity: 0.65;
-  }
-
-  .emoji-particle {
-    position: absolute;
-    color: #e0f2fe;
-    opacity: 0;
     z-index: 1;
-    animation-name: float-emoji;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-emoji {
+    opacity: 0;
+    transition: opacity 0.35s ease-out;
+  }
+
+  .emoji-spark {
+    position: absolute;
+    color: #f8fafc;
+    text-shadow:
+      0 4px 14px rgba(15, 23, 42, 0.4),
+      0 0 12px rgba(59, 130, 246, 0.35);
+    filter: drop-shadow(0 10px 14px rgba(15, 23, 42, 0.25));
+    opacity: 0;
+    animation-name: emoji-float;
+    animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-fill-mode: both;
-    text-shadow:
-      0 8px 28px rgba(59, 130, 246, 0.28),
-      0 0 12px rgba(255, 255, 255, 0.18);
-    filter: drop-shadow(0 14px 18px rgba(15, 23, 42, 0.35));
-    transform-origin: center;
+    animation-play-state: running;
     will-change: transform, opacity;
+    transition: opacity 0.3s ease-out;
+  }
+
+  .group:hover .card-emoji .emoji-spark,
+  .group:focus-visible .card-emoji .emoji-spark {
+    opacity: 1;
+  }
+
+  .group:hover .card-emoji,
+  .group:focus-visible .card-emoji {
+    opacity: 1;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .emoji-stream {
+    .emoji-cloud {
       display: none;
     }
   }

@@ -19,7 +19,7 @@ const createParticles = (seed: string, count = 18): EmojiParticle[] => {
     const left = Math.min(98, Math.max(2, baseLeft + wave + micro));
 
     const delay = 0.08 + idx * 0.18 + Math.sin(idx * 0.75) * 0.04;
-    const duration = 2.8 + (Math.sin(idx * 1.12) + 1) * 0.6; // slight speed variance
+    const duration = 2.4 + (Math.sin(idx * 1.12) + 1) * 0.55; // slight speed variance
     const size = 28 + (sizePattern[idx] ?? 0);
 
     return { left, delay, duration, size };
@@ -30,11 +30,11 @@ export default function EmojiParticles({ emoji, seed }: { emoji: string; seed: s
   const particles = createParticles(seed, 18);
 
   return (
-    <div className="emoji-cloud" aria-hidden>
+    <div className="emoji-cloud card-emoji" aria-hidden>
       {particles.map((particle, idx) => {
         const style: CSSProperties = {
           left: `${particle.left}%`,
-          animationDelay: `${particle.delay}s`,
+          animationDelay: `-${particle.delay}s`, // start mid-cycle for smoother entry
           animationDuration: `${particle.duration}s`,
           fontSize: `${particle.size}px`,
         };

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, TrendingUp } from 'lucide-react';
+import EmojiParticles from '@/components/EmojiParticles';
 import { articles } from '@/lib/data/articles';
 import { sports } from '@/lib/data/sports';
 import { getArticleSubcategory } from '@/lib/utils';
@@ -60,15 +61,22 @@ export default function Home() {
                 href={`/sports/${sport.slug}`}
                 className="group relative overflow-hidden rounded-2xl border border-slate-700/70 ring-1 ring-slate-600/60 bg-gradient-to-br from-slate-800 via-slate-800/70 to-slate-900 hover:border-blue-500 hover:ring-blue-500/60 transition-all duration-800 shadow-none hover:shadow-2xl hover:shadow-blue-900/40"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={sport.image}
-                    alt={sport.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/45 to-black/10" />
-                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/75 border border-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md shadow-lg shadow-black/40">
+                <div className="relative h-48 overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900">
+                  <div className="absolute inset-0 transition-all duration-700 opacity-100 group-hover:opacity-0">
+                    <Image
+                      src={sport.image}
+                      alt={sport.name}
+                      fill
+                      className="object-cover w-full h-full blur-[3px] brightness-[0.45] contrast-[1.05]"
+                    />
+                    <div className="absolute inset-0 bg-black/55 backdrop-blur-[2px]" />
+                  </div>
+                  <div className="absolute inset-0 opacity-0 mix-blend-screen bg-[radial-gradient(circle_at_20%_30%,rgba(148,163,184,0.2),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.18),transparent_28%),radial-gradient(circle_at_40%_80%,rgba(79,70,229,0.2),transparent_30%)] transition-opacity duration-700 group-hover:opacity-100" />
+                  <div className="absolute inset-0 flex items-center justify-center text-8xl opacity-0 blur-[1px] pointer-events-none select-none transition-opacity duration-700 group-hover:opacity-30">
+                    {sport.icon}
+                  </div>
+                  <EmojiParticles emoji={sport.icon} seed={sport.slug} />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/75 border border-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md shadow-lg shadow-black/40 z-10">
                     <span className="h-2 w-2 rounded-full bg-blue-400" />
                     Featured Sport
                   </div>
@@ -116,15 +124,22 @@ export default function Home() {
                 href={`/esports/${sport.slug}`}
                 className="group relative overflow-hidden rounded-2xl border border-slate-700/70 ring-1 ring-slate-600/60 bg-gradient-to-br from-slate-800 via-slate-800/70 to-slate-900 hover:border-indigo-500 hover:ring-indigo-500/60 transition-all duration-800 shadow-none hover:shadow-2xl hover:shadow-indigo-900/40"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={sport.image}
-                    alt={sport.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/45 to-black/10" />
-                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/75 border border-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md shadow-lg shadow-black/40">
+                <div className="relative h-48 overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900">
+                  <div className="absolute inset-0 transition-all duration-700 opacity-100 group-hover:opacity-0">
+                    <Image
+                      src={sport.image}
+                      alt={sport.name}
+                      fill
+                      className="object-cover w-full h-full blur-[3px] brightness-[0.45] contrast-[1.05]"
+                    />
+                    <div className="absolute inset-0 bg-black/55 backdrop-blur-[2px]" />
+                  </div>
+                  <div className="absolute inset-0 opacity-0 mix-blend-screen bg-[radial-gradient(circle_at_20%_30%,rgba(148,163,184,0.2),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(99,102,241,0.2),transparent_28%),radial-gradient(circle_at_40%_80%,rgba(79,70,229,0.2),transparent_30%)] transition-opacity duration-700 group-hover:opacity-100" />
+                  <div className="absolute inset-0 flex items-center justify-center text-8xl opacity-0 blur-[1px] pointer-events-none select-none transition-opacity duration-700 group-hover:opacity-30">
+                    {sport.icon}
+                  </div>
+                  <EmojiParticles emoji={sport.icon} seed={sport.slug} />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/75 border border-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md shadow-lg shadow-black/40 z-10">
                     <span className="h-2 w-2 rounded-full bg-indigo-400" />
                     Featured Esport
                   </div>
