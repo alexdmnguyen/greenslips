@@ -200,9 +200,9 @@ const buildCategoryNav = (base: string, type: 'sports' | 'esports'): NavItem[] =
                     item.name
                   )}
                 </Link>
-                {item.children && (
+                {/* {(item.children ?? []).length > 0 && (
                   <div className="pl-4">
-                    {item.children.map((child) => (
+                    {(item.children ?? []).map((child) => (
                       <Link
                         key={child.name}
                         href={child.href}
@@ -213,7 +213,7 @@ const buildCategoryNav = (base: string, type: 'sports' | 'esports'): NavItem[] =
                       </Link>
                     ))}
                   </div>
-                )}
+                )} */}
               </div>
             ))}
           </div>
