@@ -54,47 +54,54 @@ export default function EsportsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {esportsTitles.map((sport) => (
-              <Link
-                key={sport.id}
-                href={`/esports/${sport.slug}`}
-                className="group relative overflow-hidden rounded-2xl border border-slate-700/70 ring-1 ring-slate-600/60 bg-gradient-to-br from-slate-800 via-slate-800/70 to-slate-900 hover:border-indigo-500 hover:ring-indigo-500/60 transition-all duration-800 shadow-none hover:shadow-2xl hover:shadow-indigo-900/40"
-              >
-                <div className="relative h-48 overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900">
-                  <div className="absolute inset-0 transition-all duration-700 opacity-100 group-hover:opacity-0">
-                    <Image
-                      src={sport.image}
-                      alt={sport.name}
-                      fill
-                      className="object-cover w-full h-full blur-[3px] brightness-[0.45] contrast-[1.05]"
-                    />
-                    <div className="absolute inset-0 bg-black/55 backdrop-blur-[2px]" />
+            {esportsTitles.map((sport) => {
+              const titleClass =
+                sport.name === 'League of Legends' ? 'text-lg md:text-xl' : 'text-2xl';
+
+              return (
+                <Link
+                  key={sport.id}
+                  href={`/esports/${sport.slug}`}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-700/70 ring-1 ring-slate-600/60 bg-gradient-to-br from-slate-800 via-slate-800/70 to-slate-900 hover:border-indigo-500 hover:ring-indigo-500/60 transition-all duration-800 shadow-none hover:shadow-2xl hover:shadow-indigo-900/40"
+                >
+                  <div className="relative h-48 overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900">
+                    <div className="absolute inset-0 transition-all duration-700 opacity-100 group-hover:opacity-0">
+                      <Image
+                        src={sport.image}
+                        alt={sport.name}
+                        fill
+                        className="object-cover w-full h-full blur-[3px] brightness-[0.45] contrast-[1.05]"
+                      />
+                      <div className="absolute inset-0 bg-black/55 backdrop-blur-[2px]" />
+                    </div>
+                    <div className="absolute inset-0 opacity-0 mix-blend-screen bg-[radial-gradient(circle_at_20%_30%,rgba(148,163,184,0.2),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(99,102,241,0.2),transparent_28%),radial-gradient(circle_at_40%_80%,rgba(79,70,229,0.2),transparent_30%)] transition-opacity duration-700 group-hover:opacity-100" />
+                    <div className="absolute inset-0 flex items-center justify-center text-8xl opacity-0 blur-[1px] pointer-events-none select-none transition-opacity duration-700 group-hover:opacity-30">
+                      {sport.icon}
+                    </div>
+                    <EmojiParticles emoji={sport.icon} seed={sport.slug} />
                   </div>
-                  <div className="absolute inset-0 opacity-0 mix-blend-screen bg-[radial-gradient(circle_at_20%_30%,rgba(148,163,184,0.2),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(99,102,241,0.2),transparent_28%),radial-gradient(circle_at_40%_80%,rgba(79,70,229,0.2),transparent_30%)] transition-opacity duration-700 group-hover:opacity-100" />
-                  <div className="absolute inset-0 flex items-center justify-center text-8xl opacity-0 blur-[1px] pointer-events-none select-none transition-opacity duration-700 group-hover:opacity-30">
-                    {sport.icon}
+                  <div className="relative p-6 space-y-3 flex-1">
+                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-indigo-900/25 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
+                    <div className="flex items-center justify-center gap-3 text-center">
+                      <div className="text-3xl">{sport.icon}</div>
+                      <h3
+                        className={`${titleClass} font-bold text-white group-hover:text-indigo-200 transition-colors drop-shadow-[0_2px_12px_rgba(99,102,241,0.45)]`}
+                      >
+                        {sport.name}
+                      </h3>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed transition-colors duration-500 group-hover:text-gray-100 line-clamp-1">
+                      {sport.description}
+                    </p>
+                    <div className="flex justify-end text-sm text-indigo-100 mt-3">
+                      <span className="inline-flex items-center gap-1">
+                        Explore <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
                   </div>
-                  <EmojiParticles emoji={sport.icon} seed={sport.slug} />
-                </div>
-                <div className="relative p-6 space-y-3 flex-1">
-                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-indigo-900/25 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
-                  <div className="flex items-center justify-center gap-3 text-center">
-                    <div className="text-3xl">{sport.icon}</div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-indigo-200 transition-colors drop-shadow-[0_2px_12px_rgba(99,102,241,0.45)]">
-                      {sport.name}
-                    </h3>
-                  </div>
-                  <p className="text-gray-300 text-sm leading-relaxed transition-colors duration-500 group-hover:text-gray-100 line-clamp-1">
-                    {sport.description}
-                  </p>
-                  <div className="flex justify-end text-sm text-indigo-100 mt-3">
-                    <span className="inline-flex items-center gap-1">
-                      Explore <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="mb-12">
