@@ -73,9 +73,12 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-slate-800">
-          <p className="text-gray-400 text-sm text-center">
-            &copy; 2024 SAMBO SENTRAL. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center gap-2 text-sm text-gray-400">
+            <p>&copy; 2024 SAMBO SENTRAL. All rights reserved.</p>
+            <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+              About
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

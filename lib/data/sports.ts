@@ -11,17 +11,17 @@ export interface Sport {
 export const sports: Sport[] = [
   {
     id: '1',
-    name: 'Baseball',
-    slug: 'baseball',
+    name: 'NFL',
+    slug: 'NFL',
     category: 'sports',
-    icon: '⚾',
-    description: 'Latest MLB news, scores, and analysis',
-    image: 'https://images.pexels.com/photos/1308713/pexels-photo-1308713.jpeg?auto=compress&cs=tinysrgb&w=800'
+    icon: '🏈',
+    description: 'Latest NFL news, scores, and analysis',
+    image: 'https://images.pexels.com/photos/2570139/pexels-photo-2570139.jpeg?_gl=1*1wwlxic*_ga*MjEyMTg5Njc1OC4xNzY1NTM2MTU0*_ga_8JE65Q40S6*czE3NjU1MzYxNTQkbzEkZzAkdDE3NjU1MzYxNTQkajYwJGwwJGgw'
   },
   {
     id: '2',
-    name: 'Basketball',
-    slug: 'basketball',
+    name: 'NBA',
+    slug: 'NBA',
     category: 'sports',
     icon: '🏀',
     description: 'NBA coverage, player stats, and game previews',
@@ -56,13 +56,22 @@ export const sports: Sport[] = [
   },
   {
     id: '6',
-    name: 'League of Legends',
+    name: 'LoL',
     slug: 'league-of-legends',
     category: 'esports',
     icon: '⚔️',
     description: 'LoL esports, patch notes, and champion guides',
     image: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=800'
-  }
+  },
+  // {
+  //   id: '7',
+  //   name: 'MLB',
+  //   slug: 'MLB',
+  //   category: 'sports',
+  //   icon: '⚾',
+  //   description: 'Latest MLB news, scores, and analysis',
+  //   image: 'https://images.pexels.com/photos/1308713/pexels-photo-1308713.jpeg?auto=compress&cs=tinysrgb&w=800'
+  // },
 ];
 
 export const getSportsBySports = () => sports.filter(s => s.category === 'sports');
